@@ -21,8 +21,7 @@
 
 
 #include "FbxPlayer.h"
-#include"Boss.h"
-#include"Ground.h"
+
 
 
 
@@ -97,9 +96,8 @@ private:
 
 
 private://メソッド
-	//std::unique_ptr<FbxPlayer> fbxPlayer_;
-	//std::unique_ptr<Boss> boss_;
-	std::unique_ptr<Field> field_;
+	
+	
 
 
 	//レーンデバッグ用のテクスチャ

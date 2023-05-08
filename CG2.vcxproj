@@ -152,10 +152,6 @@
     <ClCompile Include="3dObject\Mesh.cpp" />
     <ClCompile Include="3dObject\Object3d.cpp" />
     <ClCompile Include="audio\Audio.cpp" />
-    <ClCompile Include="Boss.cpp" />
-    <ClCompile Include="BossBullet.cpp" />
-    <ClCompile Include="BossBurstBullet.cpp" />
-    <ClCompile Include="BossLaser.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collider\Collision.cpp" />
     <ClCompile Include="Collider\CollisionManager.cpp" />
@@ -168,7 +164,6 @@
     <ClCompile Include="fbx\FBXLoader.cpp" />
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="HitStopManager.cpp" />
     <ClCompile Include="ImGuiManager.cpp" />
     <ClCompile Include="math\MathFunc.cpp" />
@@ -178,7 +173,6 @@
     <ClCompile Include="math\Matrix4.cpp" />
     <ClCompile Include="math\Quaternion.cpp" />
     <ClCompile Include="ParticleManager.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="scene\Ease.cpp" />
     <ClCompile Include="scene\sceneManager\EndScene.cpp" />
     <ClCompile Include="scene\sceneManager\GamePart1.cpp" />
@@ -267,10 +261,6 @@
     <ClInclude Include="3dObject\Mesh.h" />
     <ClInclude Include="3dObject\Object3d.h" />
     <ClInclude Include="audio\Audio.h" />
-    <ClInclude Include="Boss.h" />
-    <ClInclude Include="BossBullet.h" />
-    <ClInclude Include="BossBurstBullet.h" />
-    <ClInclude Include="BossLaser.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collider\BaseCollider.h" />
     <ClInclude Include="Collider\Collision.h" />
@@ -288,7 +278,6 @@
     <ClInclude Include="fbx\FBXLoader.h" />
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameScene.h" />
-    <ClInclude Include="Ground.h" />
     <ClInclude Include="HitStopManager.h" />
     <ClInclude Include="ImGuiManager.h" />
     <ClInclude Include="math\MathFunc.h" />
@@ -298,7 +287,6 @@
     <ClInclude Include="math\Matrix4.h" />
     <ClInclude Include="math\Quaternion.h" />
     <ClInclude Include="ParticleManager.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="scene\Ease.h" />
     <ClInclude Include="scene\sceneManager\EndScene.h" />
     <ClInclude Include="scene\sceneManager\GamePart1.h" />

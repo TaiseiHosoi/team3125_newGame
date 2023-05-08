@@ -118,11 +118,7 @@ void GameScene::Initialize(DirectXCommon* dxcomon)
 	//boss_.get()->SetPlayer(fbxPlayer_.get());
 	//gameCamera_.get()->SetTargetPos(boss_.get()->GetObject3d()->GetWorldTransformPtr());
 
-	//field
-	field_ = std::make_unique<Field>();
-	field_.get()->Initialize();
-	field_.get()->Update();
-
+	
 	sceneManager_ = std::make_unique<SceneManager>(dxCommon_, gameCamera_.get());
 	sceneManager_->ObjectInitialize();
 	sceneManager_->SceneInitialize();
@@ -154,33 +150,8 @@ void GameScene::Update()
 	//}
 	//hitokunFbxO_->Update();
 
-	float kCameraVel = 0.02f;
-	Vector3 nowEye = gameCamera_->GetEye();
+	
 
-	gameCamera_->SetTarget(hitokunFbxO_.get()->wtf.translation_);
-
-	if (input_->PushKey(DIK_RIGHT)) {
-		nowEye.x += kCameraVel;
-	}
-	else if (input_->PushKey(DIK_LEFT)) {
-		nowEye.x -= kCameraVel;
-	}else if (input_->PushKey(DIK_UP)) {
-		nowEye.z += kCameraVel;
-	}
-	else if (input_->PushKey(DIK_DOWN)) {
-		nowEye.z -= kCameraVel;
-	}
-
-	//フィールドの更新
-	field_.get()->Update();
-
-
-	ImGui::Begin("Camera");
-
-	ImGui::SliderFloat("eye:x", &nowEye.x, -400.0f, 400.0f);
-	ImGui::SliderFloat("eye:xz", &nowEye.z, -400.0f, 400.0f);
-
-	ImGui::End();
 
 	/*gameCamera_->SetEye(nowEye);*/
 

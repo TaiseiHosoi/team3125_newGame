@@ -8,7 +8,6 @@
 #include "memory"
 #include "list"
 #include "GameCamera.h"
-#include "Player.h"
 #include "CollisionPrimitive.h"
 #include "FBXObject3d.h"
 #include "fbx/FBXLoader.h"
