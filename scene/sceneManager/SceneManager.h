@@ -13,8 +13,7 @@
 #include "ParticleManager.h"
 
 #include "FbxPlayer.h"
-#include "Boss.h"
-#include "Ground.h"
+
 
 
 class Input;
@@ -62,14 +61,10 @@ public:
 	//FBXƒ‚ƒfƒ‹
 	std::unique_ptr<FBXModel> hitokunFbxM_;
 	std::unique_ptr<FBXObject3d>hitokunFbxO_;
-	//FBXƒ‚ƒfƒ‹
-	std::unique_ptr<FBXModel> bossFbxM_;
-	std::unique_ptr<FBXObject3d> bossFbxO_;
+
 
 	std::unique_ptr<FbxPlayer> fbxPlayer_;
-	std::unique_ptr<Boss> boss_;
 
-	Field* field_;
 
 
 };

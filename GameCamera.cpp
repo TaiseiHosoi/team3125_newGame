@@ -18,9 +18,9 @@ GameCamera::GameCamera(int window_width , int window_height , Input* input)
 	input_ = Input::GetInstance();
 
 	//カメラの初期化
-	Vector3 eye = {0.0f , 0.0f , -5.0f};
+	Vector3 eye = {0.0f , 30.0f , -5.0f};
 	Vector3 up = {0 , 1 , 0};
-	Vector3 target = {0 , 0 , 300.0f};
+	Vector3 target = {0 , 0 , 0};
 	this->SetEye(eye);
 	this->SetUp(up);
 	this->SetTarget(target);
@@ -33,118 +33,12 @@ void GameCamera::Initialize()
 
 void GameCamera::Update()
 {
-	/*if (targetPos_) {
-		Vector3  pos = {
-			targetPos_->matWorld_.m[3][0] ,
-			targetPos_->matWorld_.m[3][1] ,
-			targetPos_->matWorld_.m[3][2]
-		};
-		SetTarget(pos);
-	}
-
-	if (eyePos_) {
-		Vector3  pos = {
-			eyePos_->matWorld_.m[3][0] ,
-			eyePos_->matWorld_.m[3][1] ,
-			eyePos_->matWorld_.m[3][2]
-		};
-		SetEye(pos);
-	}*/
-
-	if (input_->TriggerKey(DIK_Q))
-	{
-		if (isFollowPlayer_ == true)
-		{
-			isFollowPlayer_ = false;
-		}
-		else
-		{
-			isFollowPlayer_ = true;
-		}
-	}
-
-	if (isFollowPlayer_ == true)
-	{
-
-		if (input_->TriggerKey(DIK_F))
-		{	//カメラのモード切り替え
-			if (cameraMode_ == 0)
-			{
-				cameraMode_ = 1;
-			}
-			else if (cameraMode_ == 1)
-			{
-				cameraMode_ = 0;
-			}
-			else
-			{
-				cameraMode_ = 0;
-			}
-		}
-
-		//カメラの位置
-		Vector3 eyeVec = followerPos_->translation_ - targetPos_->translation_;
-
-		Vector3 eyePos = eyeVec;
-
-		float mag = 1.0f;
-		float eyeLen = eyePos.length();	//ベクトルの長さ
-
-		if (eyeLen > 1.0f)
-		{	//もし差分のベクトルが単位ベクトルより大きかったら
-			mag = 1.0f / eyeLen; //ベクトルの長さを1にする
-		};
-
-		eyePos.x *= mag;	//magをかけると正規化される
-		eyePos.y *= mag;
-		eyePos.z *= mag;
-
-		if (cameraMode_ == 0)
-		{
-			if (cameraModeChangeCountTimer < MAX_CHANGE_TIMER)
-			{
-				cameraModeChangeCountTimer++;
-			}
-		}
-		else if (cameraMode_ == 1)
-		{
-			if (cameraModeChangeCountTimer > 0)
-			{
-				cameraModeChangeCountTimer--;
-			}
-		}
-
-		cameraDistance_ = Ease::InOutQuad(MIN_CAMERA_DISTANCE , MAX_CAMERA_DISTANCE , cameraModeChangeCountTimer , MAX_CHANGE_TIMER);
-		cameraHeight_ = Ease::InOutQuad(3 , 6 , cameraModeChangeCountTimer , MAX_CHANGE_TIMER);
-
-
-		Vector3 primalyCamera =
-		{followerPos_->translation_.x + eyePos.x * cameraDistance_ ,//自機から引いた位置にカメラをセット
-			cameraHeight_ ,
-			followerPos_->translation_.z + eyePos.z * cameraDistance_};
-
-		float eyeVecAngle = atan2f(primalyCamera.x - targetPos_->translation_.x , primalyCamera.z - targetPos_->translation_.z);//カメラをずらす際に使われる
-
-		float shiftLen = -5.0f;	//ずらす量
-		Vector3 shiftVec = {primalyCamera.x + sinf(eyeVecAngle + MathFunc::PI / 2) * shiftLen , primalyCamera.y , primalyCamera.z + cosf(eyeVecAngle + MathFunc::PI / 2) * shiftLen};
-
-		ShakePrim();
-		SetEye(shiftVec + loolAtPos);
-
-		Vector3 zOffsetTarget = targetPos_->translation_ - eye;	//敵と自機が近すぎてもバグらないようにしたい
-		float targetToEyeLen = zOffsetTarget.length();
-		zOffsetTarget.nomalize();
-		zOffsetTarget *= targetToEyeLen * 2.0f;
-		zOffsetTarget.y += 3.0f;
-
-		SetTarget(targetPos_->translation_ + shakeVec_);
-
-	}
-	//SetEye({0,5,-20});
-
-
 
 	Camera::Update();
+	ImGui::Begin("camera");
+	ImGui::InputFloat3("eye", &eye.x);
+	ImGui::InputFloat3("target", &target.x);
+	ImGui::End();
 }
 
 void GameCamera::SetTargetPos(WorldTransform* targetPos)

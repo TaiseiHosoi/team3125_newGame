@@ -5,7 +5,7 @@
 
 // シーンのインクルード
 #include "SceneIntegrate.h"
-#include "Ground.h"
+
 
 
 SceneManager::SceneManager(DirectXCommon* dxCommon, GameCamera* camera) {
@@ -16,7 +16,7 @@ SceneManager::SceneManager(DirectXCommon* dxCommon, GameCamera* camera) {
 
 }
 SceneManager::~SceneManager() {
-	delete field_;
+	
 }
 void SceneManager::ObjectInitialize() {
 
@@ -41,13 +41,6 @@ void SceneManager::ObjectInitialize() {
 		hitokunFbxO_->SetModel(hitokunFbxM_.get());
 		hitokunFbxO_->SetPosition({ 0,0,0 });
 
-		bossFbxM_.reset(FbxLoader::GetInstance()->LoadModelFromFile("boss_prot4"));
-		bossFbxO_ = std::make_unique<FBXObject3d>();
-		bossFbxO_->Initialize();
-		bossFbxO_->SetModel(bossFbxM_.get());
-		bossFbxO_->SetPosition({ 0,0,10 });
-		bossFbxO_->SetScale({ 0.5,0.5,0.5 });
-		bossFbxO_->PlayAnimation(0);
 	}
 	{
 		//Player
@@ -56,11 +49,9 @@ void SceneManager::ObjectInitialize() {
 		//gameCamera_.get()->SetEyePos(fbxPlayer_.get()->GetObject3d()->GetWorldTransformPtr());
 		_camera->SetFollowerPos(fbxPlayer_.get()->GetObject3d()->GetWorldTransformPtr());
 
-		//boss
-		boss_ = std::make_unique<Boss>();
-		boss_.get()->Initialize(_dxCommon);
-		boss_.get()->SetPlayer(fbxPlayer_.get());
-		_camera->SetTargetPos(boss_.get()->GetObject3d()->GetWorldTransformPtr());
+		WorldTransform targetCameraPos_;
+		targetCameraPos_.initialize();
+		_camera->SetTargetPos(&targetCameraPos_);
 	}
 	//パーティクルのセット
 	particleManager_ = std::make_unique<ParticleManager>();
@@ -68,8 +59,6 @@ void SceneManager::ObjectInitialize() {
 	//パーティクル用素材
 	particleManager_->LoadTexture("effect.png");
 	particleManager_->Update();
-	//field
-	field_ = new Field;
 	
 }
 
